@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Charbonnet &amp; Associates Planners and Consultants, Inc. | CAPC</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300&family=Barlow:wght@300;400;500;600&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    .credential::before {
+      content: "";
+      display: inline-block;
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--gold);
+      flex-shrink: 0;
+      margin-top: 5px;
+    }
+    .practice-chip::before {
+      content: "";
+      display: inline-block;
+      width: 10px;
+      height: 2px;
+      background: var(--gold);
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .service-card.featured .service-icon svg { stroke: var(--gold); }
+    .protocol-icon svg { stroke: var(--gold-light); }
+    .client-list li { display: flex; align-items: flex-start; gap: 8px; }
+  </style>
+</head>
+
+<body>
+
+<nav>
+  <div class="nav-inner">
+    <a href="#home" class="nav-logo">CAPC<span> | Charbonnet &amp; Associates</span></a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#team">Our Team</a></li>
+      <li><a href="#justice">Social Justice</a></li>
+      <li><a href="#legal">Legal Advisory</a></li>
+      <li><a href="#contact" class="nav-cta">Contact Us</a></li>
+    </ul>
+  </div>
+</nav>
+
+<section id="home">
+  <div class="hero-inner">
+    <div>
+      <p class="hero-eyebrow fade-up">Est. 1995 · New Orleans, LA · St. Louis, MO</p>
+      <h1 class="hero-title fade-up fade-up-delay-1">
+        Planning. Consulting.<br/>
+        <span class="accent">Building What Matters.</span>
+      </h1>
+      <p class="hero-subtitle fade-up fade-up-delay-2">
+        Charbonnet &amp; Associates Planners and Consultants, Inc. (CAPC) is a nationally
+        recognized firm delivering integrated planning, environmental, construction management,
+        and legal advisory services across aviation, education, and public infrastructure.
+      </p>
+      <div class="hero-buttons fade-up fade-up-delay-3">
+        <a href="#services" class="btn-primary">Our Services</a>
+        <a href="#contact" class="btn-outline">Request a Consultation</a>
+      </div>
+    </div>
+    <div class="hero-card fade-up fade-up-delay-2">
+      <h3>By the Numbers</h3>
+      <div class="stat-row">
+        <div class="stat-item">
+          <div class="stat-number">30+</div>
+          <div class="stat-label">Years of Operation</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">$3B+</div>
+          <div class="stat-label">Construction Projects Advised</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">15+</div>
+          <div class="stat-label">Airports Served Nationally</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number">2</div>
+          <div class="stat-label">Offices: New Orleans &amp; St. Louis</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="targets-banner">
+  <div class="targets-inner">
+    <div class="targets-label">Active Pursuits</div>
+    <div class="target-item">
+      <div class="target-tag">Priority</div>
+      <h4>Lambert-St. Louis International Airport</h4>
+      <p>
+        Environmental Planning &amp; Mitigation — Proven track record spanning
+        1995–present with expansion, EIS documentation, and Phase I ESA expertise
+      </p>
+    </div>
+    <div class="target-item">
+      <div class="target-tag">Priority</div>
+      <h4>Louisiana Community &amp; Technical College System (LCTCS)</h4>
+      <p>
+        ACT 360 Construction Outreach &amp; Technical Skills Programs —
+        Currently engaged statewide with LCTCS Facilities Corporation
+      </p>
+    </div>
+  </div>
+</div>
+
+<section id="about">
+  <div class="section-inner">
+    <p class="section-tag">Firm Overview</p>
+    <h2 class="section-title">A Unique Combination of Planning &amp; Legal Expertise</h2>
+    <div class="divider"></div>
+    <div class="about-grid">
+      <div class="about-text">
+        <p>
+          Charbonnet &amp; Associates Planners and Consultants, Inc. (CAPC) is a planning
+          and consulting firm whose experience and expertise spans local, state, and federal
+          enterprises — including aviation, schools, and municipalities. Founded in 1995 by
+          Bernard L. Charbonnet, Jr., the firm maintains its corporate office in downtown
+          New Orleans with a branch office in St. Louis, Missouri.
+        </p>
+        <p>
+          Since its inception, CAPC's planners, architects, engineers, and lawyers have
+          participated in consulting projects for numerous public and private entities
+          including Lambert-St. Louis International Airport, Jackson International Airport,
+          Alexandria International Airport, Chicago O'Hare International Airport, Jefferson
+          Parish Louisiana, the City of Shreveport, Port of New Orleans, Orleans Parish
+          School Board, and the Louisiana Community &amp; Technical College System.
+        </p>
+        <p>
+          What distinguishes CAPC is the ability to provide both planning staff and legal
+          advisors on the same project — affording clients a unique combination of integrated
+          planning and regulatory counsel unavailable at most firms.
+        </p>
+        <div class="about-highlight">
+          <p>
+            "CAPC consultants consistently bring a high level of professional service to each
+            client and project — combining legal and regulatory consultation with hands-on
+            planning expertise."
+          </p>
+          <cite>— Firm Mission Statement</cite>
+        </div>
+      </div>
+      <div>
+        <div class="presence-card">
+          <h3>Select Client Relationships</h3>
+          <ul class="client-list">
+            <li><span style="display:inline-flex;align-items:center;margin-right:6px;color:var(--gold);vertical-align:middle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21 4 19 4c-1 0-1.5.5-3.5 2.5L11 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/></svg></span><strong>Lambert-St. Louis International Airport</strong> — St. Louis, MO</li>
+            <li><span style="display:inline-flex;align-items:center;margin-right:6px;color:var(--gold);vertical-align:middle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21 4 19 4c-1 0-1.5.5-3.5 2.5L11 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/></svg></span><strong>New Orleans Aviation Board</strong> — New Orleans, LA</li>
+            <li><span style="display:inline-flex;align-items:center;margin-right:6px;color:var(--gold);vertical-align:middle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21 4 19 4c-1 0-1.5.5-3.5 2.5L11 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/></svg></span><strong>Jackson International Airport</strong> — Jackson, MS</li>
+            <li><span style="display:inline-flex;align-items:center;margin-right:6px;color:var(--gold);vertical-align:middle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21 4 19 4c-1 0-1.5.5-3.5 2.5L11 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/></svg></span><strong>Alexandria International Airport</strong> — Alexandria, LA</li>
+            <li><span style="display:inline-flex;align-items:center;margin-right:6px;color:var(--gold);vertical-align:middle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21 4 19 4c-1 0-1.5.5-3.5 2.5L11 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/></svg></span><strong>New Orleans Lakefront Airport</strong> — New Orleans, LA</li>
+            <li><span style="display:inline-flex;align-items:center;margin-right:6px;color:var(--gold);vertical-align:middle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21 4 19 4c-1 0-1.5.5-3.5 2.5L11 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/></svg></span><strong>Gulfport-Biloxi International Airport</strong> — Gulfport, MS</li>
+            <li><span style="display:inline-flex;align-items:center;margin-right:6px;color:var(--gold);vertical-align:middle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18M3 10h18M3 7l9-4 9 4M4 10v11M20 10v11M8 14v3M12 14v3M16 14v3"/></svg></span><strong>Louisiana Community &amp; Technical College System</strong> — Statewide</li>
+            <li><span style="display:inline-flex;align-items:center;margin-right:6px;color:var(--gold);vertical-align:middle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18M3 10h18M3 7l9-4 9 4M4 10v11M20 10v11M8 14v3M12 14v3M16 14v3"/></svg></span><strong>Orleans Parish School Board</strong> — New Orleans, LA</li>
+            <li><span style="display:inline-flex;align-items:center;margin-right:6px;color:var(--gold);vertical-align:middle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18M3 10h18M3 7l9-4 9 4M4 10v11M20 10v11M8 14v3M12 14v3M16 14v3"/></svg></span><strong>Hospital Service District A</strong> — New Orleans, LA</li>
+            <li><span style="display:inline-flex;align-items:center;margin-right:6px;color:var(--gold);vertical-align:middle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18M3 10h18M3 7l9-4 9 4M4 10v11M20 10v11M8 14v3M12 14v3M16 14v3"/></svg></span><strong>Harris County Housing Authority</strong> — Houston, TX</li>
+            <li><span style="display:inline-flex;align-items:center;margin-right:6px;color:var(--gold);vertical-align:middle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18M3 10h18M3 7l9-4 9 4M4 10v11M20 10v11M8 14v3M12 14v3M16 14v3"/></svg></span><strong>Port of New Orleans</strong> — New Orleans, LA</li>
+            <li><span style="display:inline-flex;align-items:center;margin-right:6px;color:var(--gold);vertical-align:middle"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="28" height="28" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 21h18M3 10h18M3 7l9-4 9 4M4 10v11M20 10v11M8 14v3M12 14v3M16 14v3"/></svg></span><strong>City of Shreveport</strong> — Shreveport, LA</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="services">
+  <div class="section-inner">
+    <p class="section-tag">What We Do</p>
+    <h2 class="section-title">Comprehensive Consulting Services</h2>
+    <p class="section-lead">
+      From environmental impact mitigation to legal advisory and construction management,
+      CAPC delivers integrated solutions across every phase of complex public infrastructure projects.
+    </p>
+    <div class="services-grid">
+      <div class="service-card featured">
+        <div class="featured-badge">Core Practice</div>
+        <span class="service-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17.8 19.2 16 11l3.5-3.5C21 6 21 4 19 4c-1 0-1.5.5-3.5 2.5L11 8 4.8 6.2c-.5-.1-.9.1-1.1.5l-.3.5c-.2.5-.1 1 .3 1.3L9 12l-2 3H4l-1 1 3 2 2 3 1-1v-3l3-2 3.5 5.3c.3.4.8.5 1.3.3l.5-.2c.4-.3.6-.7.5-1.2z"/></svg></span>
+        <h3>Aviation Consulting</h3>
+        <p>
+          CAPC provides core advisory services for airports across the region, offering coherent
+          and integrated advise with hands-on collaboration on project teams.
+        </p>
+        <ul class="service-bullets">
+          <li>Airport master planning &amp; expansion programs</li>
+          <li>Land acquisition &amp; facility relocation analysis</li>
+          <li>Computer-aided design &amp; GIS mapping</li>
+          <li>Environmental Impact Statement (EIS) development</li>
+          <li>Part 150 Noise Study &amp; environmental compliance</li>
+          <li>DBE program development &amp; FAA reporting</li>
+          <li>Construction phasing &amp; long-term cost estimating</li>
+        </ul>
+      </div>
+      <div class="service-card featured">
+        <div class="featured-badge">Target Area</div>
+        <span class="service-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 20A7 7 0 0 1 9.8 6.1C15.5 5 17 4.48 19 2c1 2 2 4.18 2 8 0 5.5-4.78 10-10 10z"/><path d="M2 21c0-3 1.85-5.36 5.08-6C9.5 14.52 12 13 13 12"/></svg></span>
+        <h3>Environmental Consulting &amp; Mitigation</h3>
+        <p>
+          As part of its Environmental Impact Mitigation Program Management services, CAPC
+          develops strategies to inspect, assess, and coordinate mitigation of hazardous
+          materials across project areas.
+        </p>
+        <ul class="service-bullets">
+          <li>Phase I, II, and III Environmental Site Assessments</li>
+          <li>Environmental Impact Statements (EIS)</li>
+          <li>Wildlife management &amp; noise studies</li>
+          <li>Environmental Review Manual development</li>
+          <li>Record of Decision (ROD) compliance</li>
+          <li>Hazardous waste &amp; soil contamination remediation</li>
+          <li>Air, water, and wastewater management plans</li>
+        </ul>
+      </div>
+      <div class="service-card">
+        <span class="service-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 18a1 1 0 0 0 1 1h18a1 1 0 0 0 1-1v-2a1 1 0 0 0-1-1H3a1 1 0 0 0-1 1v2z"/><path d="M10 10V5a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1v5"/><path d="M4 15v-3a8 8 0 0 1 16 0v3"/></svg></span>
+        <h3>Construction / Program Management</h3>
+        <p>
+          CAPC has performed construction management services as part of program management
+          teams for clients totaling more than $3 billion in construction value.
+        </p>
+        <ul class="service-bullets">
+          <li>Davis Bacon compliance monitoring</li>
+          <li>Contract administration &amp; document control</li>
+          <li>Construction scheduling &amp; cost estimation</li>
+          <li>Change order review &amp; contractor oversight</li>
+          <li>Facilities assessment &amp; ADA compliance</li>
+        </ul>
+      </div>
+      <div class="service-card">
+        <span class="service-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/><rect x="8" y="2" width="8" height="4" rx="1" ry="1"/><line x1="9" y1="12" x2="15" y2="12"/><line x1="9" y1="16" x2="13" y2="16"/></svg></span>
+        <h3>General Consulting &amp; Advisory</h3>
+        <p>
+          CAPC provides a full range of management consulting services, including feasibility
+          studies, program oversight, and strategic planning for public and private sector clients.
+        </p>
+        <ul class="service-bullets">
+          <li>Feasibility studies — transportation, tourism, land use</li>
+          <li>Transit integration &amp; intermodal planning</li>
+          <li>Wastewater &amp; drainage system planning</li>
+          <li>Sanitary sewer evaluation surveys</li>
+          <li>Capital planning &amp; project oversight</li>
+        </ul>
+      </div>
+      <div class="service-card">
+        <span class="service-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.42 4.58a5.4 5.4 0 0 0-7.65 0l-.77.78-.77-.78a5.4 5.4 0 0 0-7.65 7.65l1.06 1.06L12 21.23l7.36-7.94 1.06-1.06a5.4 5.4 0 0 0 0-7.65z"/></svg></span>
+        <h3>Social &amp; Environmental Justice</h3>
+        <p>
+          As a certified Disadvantaged Business Enterprise (DBE), CAPC is uniquely positioned
+          to design and deliver outreach, compliance, and advocacy programs rooted in lived experience.
+        </p>
+        <ul class="service-bullets">
+          <li>DBE program development &amp; compliance</li>
+          <li>MBE/WBE certification outreach &amp; seminars</li>
+          <li>Community involvement &amp; stakeholder engagement</li>
+          <li>Environmental justice impact analysis</li>
+          <li>Small Business Act 360 program management</li>
+        </ul>
+      </div>
+      <div class="service-card">
+        <span class="service-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="32" height="32" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="12" y1="3" x2="12" y2="21"/><path d="M3 6l9 3 9-3"/><path d="M3 9a9 9 0 0 0 9 9"/><path d="M21 9a9 9 0 0 1-9 9"/></svg></span>
+        <h3>Legal Advisory Services</h3>
+        <p>
+          Through its affiliation with the Law Office of Bernard L. Charbonnet, Jr., CAPC
+          provides legal and regulatory consultation — a unique combination unavailable at
+          most planning firms.
+        </p>
+        <ul class="service-bullets">
+          <li>Construction contract negotiation &amp; drafting</li>
+          <li>Aviation regulatory compliance</li>
+          <li>Real estate &amp; land acquisition law</li>
+          <li>Administrative law &amp; regulatory hearings</li>
+          <li>OCIP development &amp; contractor liability</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="projects">
+  <div class="section-inner">
+    <p class="section-tag">Track Record</p>
+    <h2 class="section-title">Selected Projects &amp; Engagements</h2>
+    <p class="section-lead">
+      Decades of proven delivery across aviation, environmental, construction, and public
+      infrastructure — with special depth in St. Louis and Louisiana markets.
+    </p>
+    <div class="projects-grid">
+      <div class="project-featured project-item">
+        <div>
+          <div class="target-tag" style="margin-bottom:0.8rem;">Lambert Airport — Primary Target</div>
+          <h3>
+            Lambert-St. Louis International Airport<br/>
+            Expansion &amp; Environmental Program
+          </h3>
+          <p>
+            From 1995–2007, CAPC served on the consulting team providing general advisory
+            services to Lambert-St. Louis International Airport in preparation for its $2.8
+            billion long-term expansion plan, including the addition of a new 9,000-foot runway.
+            The airport's Environmental Management System received an achievement award in the
+            Large Airport Category by Airports Council International (ACI).
+          </p>
+        </div>
+        <div class="project-featured-detail">
+          <div class="detail-item">
+            <p>
+              <strong>Environmental:</strong> Day-to-day expansion program oversight, permitting,
+              monitoring, development of new environmental management programs, coordination with
+              regulatory agencies
+            </p>
+          </div>
+          <div class="detail-item">
+            <p>
+              <strong>Mapping &amp; GIS:</strong> Mapping of existing airport airline support
+              facilities into GIS-compatible files for the Master Plan and Part 150 Noise Study
+            </p>
+          </div>
+          <div class="detail-item">
+            <p>
+              <strong>Privatization Study:</strong> Phase I Environmental Site Assessment and
+              Compliance Assessment for the FLY314 Airport Privatization Feasibility Study —
+              2,700-acre site
+            </p>
+          </div>
+          <div class="detail-item">
+            <p>
+              <strong>Social Justice:</strong> Facilitation of recompense program for Bridgeton,
+              MO community impacted by the new runway corridor
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-featured project-item" style="grid-column: span 3; background: linear-gradient(135deg, #0e2550, #1a3a7a);">
+        <div>
+          <div class="target-tag" style="margin-bottom:0.8rem;">LCTCS — Primary Target</div>
+          <h3>
+            Louisiana Community &amp; Technical College System<br/>
+            ACT 360 Construction Outreach Program
+          </h3>
+          <p>
+            CAPC is currently working with the LCTCS Facilities Corporation to implement a
+            statewide Outreach Program to create an environment affording all small businesses
+            open access to ACT 360 construction projects. The program ensures emerging, small,
+            and underutilized construction-related businesses have viable opportunities to
+            participate across all LCTCS facility projects.
+          </p>
+        </div>
+        <div class="project-featured-detail">
+          <div class="detail-item">
+            <p>
+              <strong>Statewide Outreach:</strong> Identifying and maintaining a directory of
+              small and disadvantaged businesses; performing outreach to subcontractors and
+              prime contractors
+            </p>
+          </div>
+          <div class="detail-item">
+            <p>
+              <strong>Small Business Program:</strong> Ensuring small, minority-, and
+              women-owned companies are aware of and can participate in all ACT 360
+              project opportunities
+            </p>
+          </div>
+          <div class="detail-item">
+            <p>
+              <strong>Technical Assistance:</strong> Education seminars covering certification,
+              surety bonding, bidding, insurance, accounting, engineering, and construction law
+            </p>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-item">
+        <span class="project-tag tag-env">Environmental</span>
+        <h4>City of St. Louis CDA — Environmental Review Manual</h4>
+        <p class="location"><span style="display:inline-flex;align-items:center;gap:4px;color:var(--gray)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> St. Louis, MO</span></p>
+      </div>
+      <div class="project-item">
+        <span class="project-tag tag-aviation">Aviation</span>
+        <h4>New Orleans Lakefront Airport — Capital Improvements Program</h4>
+        <p class="location"><span style="display:inline-flex;align-items:center;gap:4px;color:var(--gray)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> New Orleans, LA</span></p>
+      </div>
+      <div class="project-item">
+        <span class="project-tag tag-env">Environmental</span>
+        <h4>Hawkins Field Airport (Jackson-Evers) — Phase I ESA &amp; Hazardous Remediation</h4>
+        <p class="location"><span style="display:inline-flex;align-items:center;gap:4px;color:var(--gray)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Jackson, MS</span></p>
+      </div>
+      <div class="project-item">
+        <span class="project-tag tag-env">Environmental</span>
+        <h4>TID Ruston Highway Improvement Project — Environmental Reconnaissance</h4>
+        <p class="location"><span style="display:inline-flex;align-items:center;gap:4px;color:var(--gray)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Ruston, LA</span></p>
+      </div>
+      <div class="project-item">
+        <span class="project-tag tag-construction">Construction</span>
+        <h4>Orleans Parish School Board — $2B Katrina Rebuild, 305 Projects</h4>
+        <p class="location"><span style="display:inline-flex;align-items:center;gap:4px;color:var(--gray)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> New Orleans, LA</span></p>
+      </div>
+      <div class="project-item">
+        <span class="project-tag tag-construction">Construction</span>
+        <h4>New Orleans East Hospital — $100M Facility Design &amp; Construction</h4>
+        <p class="location"><span style="display:inline-flex;align-items:center;gap:4px;color:var(--gray)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> New Orleans, LA</span></p>
+      </div>
+      <div class="project-item">
+        <span class="project-tag tag-dbe">DBE / Outreach</span>
+        <h4>Alexandria International Airport SDBE Program — FAA Compliance</h4>
+        <p class="location"><span style="display:inline-flex;align-items:center;gap:4px;color:var(--gray)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Alexandria, LA</span></p>
+      </div>
+      <div class="project-item">
+        <span class="project-tag tag-dbe">DBE / Outreach</span>
+        <h4>Gulfport-Biloxi Airport — DBE Programming Services</h4>
+        <p class="location"><span style="display:inline-flex;align-items:center;gap:4px;color:var(--gray)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Gulfport, MS</span></p>
+      </div>
+      <div class="project-item">
+        <span class="project-tag tag-general">General</span>
+        <h4>City of Shreveport — Sanitary Sewer Evaluation &amp; Wastewater Master Plan</h4>
+        <p class="location"><span style="display:inline-flex;align-items:center;gap:4px;color:var(--gray)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Shreveport, LA</span></p>
+      </div>
+      <div class="project-item">
+        <span class="project-tag tag-construction">Construction</span>
+        <h4>St. John the Baptist Parish — $17M Public Facility Improvements</h4>
+        <p class="location"><span style="display:inline-flex;align-items:center;gap:4px;color:var(--gray)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> St. John the Baptist Parish, LA</span></p>
+      </div>
+      <div class="project-item">
+        <span class="project-tag tag-general">General</span>
+        <h4>Southern University Law Center — Expansion Feasibility Study</h4>
+        <p class="location"><span style="display:inline-flex;align-items:center;gap:4px;color:var(--gray)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Baton Rouge, LA</span></p>
+      </div>
+      <div class="project-item">
+        <span class="project-tag tag-dbe">DBE / Outreach</span>
+        <h4>Wichita Mid-Continent Airport — Air Capital Terminal DBE Program</h4>
+        <p class="location"><span style="display:inline-flex;align-items:center;gap:4px;color:var(--gray)"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg> Wichita, KS</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SECTION 5: TEAM / RÉSUMÉS (#team)
+     ═══════════════════════════════════════════════════════════════ -->
+<section id="team">
+  <div class="section-inner">
+    <p class="section-tag">Our People</p>
+    <h2 class="section-title">Leadership &amp; Key Personnel</h2>
+    <p class="section-lead">
+      CAPC's strength lies in its multidisciplinary team of attorneys, planners, and
+      environmental engineers — each bringing deep sector expertise and decades of
+      relevant project experience.
+    </p>
+
+    <div class="team-grid">
+
+      <!-- ── Team Card 1: Bernard L. Charbonnet, Jr. ── -->
+      <div class="team-card">
+        <div class="team-card-header">
+          <div class="team-avatar">BC</div>
+          <div class="team-name">Bernard L. Charbonnet, Jr.</div>
+          <div class="team-title">President / Principal</div>
+        </div>
+        <div class="team-body">
+          <p>
+            Founder of CAPC (1995–present) and Principal of the Law Office of Bernard L.
+            Charbonnet, Jr. (1980–present). Adjunct faculty in Construction Law at the
+            Southern University Law Center. Extensive experience in construction law, aviation,
+            and real estate matters at all levels of government.
+          </p>
+          <p>
+            Served as General Counsel to the New Orleans Aviation Board, reviewing every
+            contract in the capital improvement program and supervising litigation. Special
+            counsel during the development of the new terminal (opened 2019). Currently General
+            Counsel to Hospital Service District A in New Orleans.
+          </p>
+          <div class="team-credentials">
+            <div class="credential">Juris Doctor — Southern University School of Law</div>
+            <div class="credential">B.A. Political Science — LSU New Orleans (now UNO)</div>
+            <div class="credential">General Counsel, New Orleans Aviation Board</div>
+            <div class="credential">Adjunct Faculty, Construction Law — SULC</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Team Card 2: Kathy C. Spiess ── -->
+      <div class="team-card">
+        <div class="team-card-header">
+          <div class="team-avatar">KS</div>
+          <div class="team-name">Kathy C. Spiess</div>
+          <div class="team-title">Chief Administrative Officer / Senior Planner</div>
+        </div>
+        <div class="team-body">
+          <p>
+            Senior Planner and CAO at CAPC since 2004. An administrative professional with
+            long-standing and diverse experience in program and project management for projects
+            in aviation, education, planning, and housing.
+          </p>
+          <p>
+            Firm's primary source for all Small Business and DBE programming and outreach.
+            Has facilitated networking sessions for small firms and prime contractors and written
+            educational articles geared toward small business. Expert in federal DBE compliance
+            and Davis Bacon requirements.
+          </p>
+          <div class="team-credentials">
+            <div class="credential">MBA — University of Phoenix</div>
+            <div class="credential">B.A. Journalism — LSU Baton Rouge</div>
+            <div class="credential">American Minority Airport Council — DBE Compliance</div>
+            <div class="credential">Department of Labor — Davis Bacon Compliance</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Team Card 3: Joletta Golik ── -->
+      <div class="team-card">
+        <div class="team-card-header">
+          <div class="team-avatar">JG</div>
+          <div class="team-name">Joletta Golik</div>
+          <div class="team-title">Environmental Management Director</div>
+        </div>
+        <div class="team-body">
+          <p>
+            Currently heading CAPC's environmental services for the Phase I Environmental
+            Assessment for the St. Louis Airport Privatization Feasibility Study (FAA-required).
+            Previously headed CAPC's environmental impact mitigation program at Lambert-St.
+            Louis Airport during their 1999 expansion.
+          </p>
+          <p>
+            More than 9 years of environmental engineering experience across environmental
+            assessments/audits, remedial design, construction management, regulatory compliance,
+            hazardous waste management, and water/wastewater management.
+          </p>
+          <div class="team-credentials">
+            <div class="credential">M.S. Civil/Environmental Engineering — New Mexico State University</div>
+            <div class="credential">M.S. Civil/Environmental Engineering — Poznan University, Poland</div>
+            <div class="credential">Environmental Health &amp; Safety Specialist — Alkem Laboratories</div>
+            <div class="credential">Manager, Environmental/Health &amp; Safety — Lambert-STL Airport</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Team Card 4: Ron Sides, Ph.D. ── -->
+      <div class="team-card">
+        <div class="team-card-header">
+          <div class="team-avatar">RS</div>
+          <div class="team-name">Ron Sides, Ph.D.</div>
+          <div class="team-title">Environmental Hydrogeologist</div>
+        </div>
+        <div class="team-body">
+          <p>
+            Environmental Hydrogeologist at CAPC since 2018. Dr. Sides brings more than
+            35 years of combined earth science experience across academic, industry, and
+            environmental consulting fields.
+          </p>
+          <p>
+            His responsibilities include management of numerous environmental projects and
+            geological and hydrogeological investigations. He is experienced in environmental
+            oversight, data interpretation, decision making, deicing procedure tracking,
+            permitting, Agency and third-party negotiations, and has served as an expert
+            witness in environmental litigation.
+          </p>
+          <div class="team-credentials">
+            <div class="credential">B.S. — Southeast Missouri University</div>
+            <div class="credential">Ph.D. Environmental Science — University of Kansas</div>
+            <div class="credential">Senior Hydrogeologist — Golder Associates, Inc. (2000–2015)</div>
+            <div class="credential">Hydrogeologist — Dames &amp; Moore / URS (1994–2000)</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ── Team Card 5: C. George Bender ── -->
+      <div class="team-card">
+        <div class="team-card-header">
+          <div class="team-avatar">CGB</div>
+          <div class="team-name">C. George Bender</div>
+          <div class="team-title">Director, Business Development</div>
+        </div>
+        <div class="team-body">
+          <p>
+            Director of Business Development at CAPC since 2019. Mr. Bender brings over
+            10 years of experience in senior-level business development, sales leadership,
+            and direct sales across Fortune 500 organizations and government entities.
+          </p>
+          <p>
+            As part of the CAPC staff, Mr. Bender provides insight and a unique perspective
+            from his vast experience in business practices across multiple market capabilities.
+            He has implemented sales training and development, executive training, and
+            consulting techniques for major organizations. He also serves as Principal Trainer
+            at Esther's Empowerment Leadership Institute (2014–present).
+          </p>
+          <div class="team-credentials">
+            <div class="credential">B.A. Political Science — University of New Orleans</div>
+            <div class="credential">Six Sigma Green Belt Certified</div>
+            <div class="credential">DBE Compliance Certification — Ken Weeden &amp; Associates</div>
+            <div class="credential">Principal — Bender &amp; Associates (2012–2014)</div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- End team-grid -->
+  </div><!-- End section-inner -->
+</section><!-- End #team -->
+
+
+<section id="justice">
+  <div class="section-inner">
+    <p class="section-tag" style="color: var(--gold-light);">Social &amp; Environmental Justice</p>
+    <h2 class="section-title">Equity in Every Project</h2>
+    <div class="divider"></div>
+    <p class="section-lead">
+      Charbonnet &amp; Associates is well acquainted with the issues of social and environmental
+      justice — having addressed these issues directly on past projects including the St. Louis
+      Lambert Airport expansion, the Bridgeton, MO community recompense program, and statewide
+      DBE outreach initiatives.
+    </p>
+    <div class="justice-grid">
+      <div>
+        <div class="justice-def-card">
+          <h4>Social Justice</h4>
+          <p>
+            Giving individuals and groups fair treatment and an impartial share of social,
+            environmental, and economic benefits — promoting fair distribution of advantages
+            and disadvantages within a society regardless of background or status.
+          </p>
+        </div>
+        <div class="justice-def-card">
+          <h4>Environmental Justice</h4>
+          <p>
+            Concerns the distribution of environmental benefits and burdens people experience
+            at home, at work, or where they play and learn — including access to greenspace,
+            clean air and water, investment in pollution abatement, and protection from
+            industrial, transport-generated, and municipal pollution.
+          </p>
+        </div>
+        <div class="justice-def-card">
+          <h4>Our DBE Commitment</h4>
+          <p>
+            As a certified Disadvantaged Business Enterprise, CAPC has undergone the transition
+            from a struggling minority-owned company to an established transportation-consulting
+            firm operating regionally for more than 25 years. We understand what matters to
+            disadvantaged groups — and we deliver.
+          </p>
+        </div>
+      </div>
+      <div>
+        <p style="font-family: 'Playfair Display', serif; font-size: 1.1rem; color: var(--gold-light); font-style: italic; margin-bottom: 1.5rem;">
+          "We offer and implement solutions."
+        </p>
+        <ul class="justice-protocol">
+          <li>
+            <span class="protocol-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg></span>
+            <p><strong>We do our research</strong> when designing community involvement programs, ensuring plans are grounded in real data and local context.</p>
+          </li>
+          <li>
+            <span class="protocol-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 11l19-9-9 19-2-8-8-2z"/></svg></span>
+            <p><strong>We communicate</strong> what is at stake and how community input will be used — in the community's own language.</p>
+          </li>
+          <li>
+            <span class="protocol-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></span>
+            <p><strong>We go to them</strong> — the community — for input, using visuals to ensure inclusivity for people with varying language skills.</p>
+          </li>
+          <li>
+            <span class="protocol-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg></span>
+            <p><strong>We provide education and context</strong> — addressing the pros and cons of issues so stakeholders can participate meaningfully.</p>
+          </li>
+          <li>
+            <span class="protocol-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.42 4.58a5.4 5.4 0 0 0-7.65 0l-.77.78-.77-.78a5.4 5.4 0 0 0-7.65 7.65l1.06 1.06L12 21.23l7.36-7.94 1.06-1.06a5.4 5.4 0 0 0 0-7.65z"/></svg></span>
+            <p><strong>We turn to community leaders</strong> to solicit participation and input from the groups most affected by project decisions.</p>
+          </li>
+          <li>
+            <span class="protocol-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="18" y1="20" x2="18" y2="10"/><line x1="12" y1="20" x2="12" y2="4"/><line x1="6" y1="20" x2="6" y2="14"/></svg></span>
+            <p><strong>We collect and monitor</strong> demographic information in real-time to allow for adjustments and additions to the plan.</p>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="legal">
+  <div class="section-inner">
+    <p class="section-tag">Legal Services</p>
+    <h2 class="section-title">Legal Advisory Services</h2>
+    <div class="divider"></div>
+    <div class="legal-grid">
+      <div class="legal-text">
+        <p>
+          Through its affiliation with the Law Office of Bernard L. Charbonnet, Jr., CAPC
+          provides an array of professional services of unmatched ability — combining attorneys,
+          architects, engineers, and environmental consultants who can assist any client in any endeavor.
+        </p>
+        <p>
+          Mr. Charbonnet possesses a vast amount of knowledge of construction law allowing CAPC
+          to offer a broader range of services than those normally associated with planning firms.
+          His legal consultants evaluate contracts and advise clients regarding claims made by
+          contractors and subcontractors, as well as establish preventative procedures to prevent
+          costly litigation.
+        </p>
+        <p>
+          CAPC has provided consulting or legal services for projects totaling more than three
+          billion dollars' worth of construction — including the $175 million Orleans Parish School
+          Board renovation program, the $650 million New Orleans International Airport expansion,
+          and the $100 million New Orleans East Hospital.
+        </p>
+        <p>
+          The firm has also represented the Housing Authority of New Orleans (HANO) and currently
+          serves as general counsel to Hospital Service District A in New Orleans.
+        </p>
+      </div>
+      <div>
+        <h3 style="font-family:'Playfair Display',serif; color:var(--navy); margin-bottom:1.2rem; font-size:1.1rem;">
+          Areas of Legal Practice
+        </h3>
+        <div class="legal-practice-areas">
+          <div class="practice-chip">Construction Law</div>
+          <div class="practice-chip">Aviation Law &amp; Regulation</div>
+          <div class="practice-chip">Real Estate Law</div>
+          <div class="practice-chip">Contract Negotiation</div>
+          <div class="practice-chip">Administrative Law</div>
+          <div class="practice-chip">Federal Regulatory Compliance</div>
+          <div class="practice-chip">HUD / Housing Law</div>
+          <div class="practice-chip">Environmental Compliance</div>
+          <div class="practice-chip">Labor Law (Davis Bacon)</div>
+          <div class="practice-chip">Owners Controlled Insurance</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════════════════════════════════════════
+     SECTION 8: CONTACT (#contact) — FIXED alignment
+     ═══════════════════════════════════════════════════════════════ -->
+<section id="contact">
+  <div class="section-inner">
+    <p class="section-tag" style="color:var(--gold-light);">Get in Touch</p>
+    <h2 class="section-title">Contact Charbonnet &amp; Associates</h2>
+    <p class="section-lead">
+      Ready to discuss your next project? CAPC is available for engagements across
+      aviation, environmental, construction, and legal advisory services.
+    </p>
+
+    <div class="contact-grid">
+
+      <!-- ── Left column: contact info cards ── -->
+      <div>
+
+        <!-- Card 1: Corporate Headquarters -->
+        <div class="contact-card">
+          <h4>Corporate Headquarters</h4>
+          <div class="contact-info-row">
+            <div class="info-line">
+              <span style="color:var(--gold);flex-shrink:0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
+              <span>
+                Charbonnet &amp; Associates Planners and Consultants, Inc.<br/>
+                Canal Place, Suite 1100<br/>
+                365 Canal Street<br/>
+                New Orleans, LA 70130
+              </span>
+            </div>
+            <div class="info-line">
+              <span style="color:var(--gold);flex-shrink:0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12a19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 3.6 1.29h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L7.91 8.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
+              <span>504-561-0996</span>
+            </div>
+            <div class="info-line">
+              <span style="color:var(--gold);flex-shrink:0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="22 17 17 17 17 21 7 21 7 17 2 17 2 10 22 10 22 17"/><rect x="7" y="2" width="10" height="8"/><line x1="18" y1="14" x2="19" y2="14"/></svg></span>
+              <span>504-561-7850</span>
+            </div>
+            <div class="info-line">
+              <span style="color:var(--gold);flex-shrink:0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg></span>
+              <span>kspiess@charbonnetassociates.com</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 2: Branch Office -->
+        <div class="contact-card">
+          <h4>Branch Office</h4>
+          <div class="contact-info-row">
+            <div class="info-line">
+              <span style="color:var(--gold);flex-shrink:0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
+              <span>St. Louis, Missouri</span>
+            </div>
+            <div class="info-line">
+              <span style="color:var(--gold);flex-shrink:0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg></span>
+              <span>Serving Lambert-St. Louis International Airport and the greater St. Louis metro market</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Card 3: Key Contacts -->
+        <div class="contact-card">
+          <h4>Key Contacts</h4>
+          <div class="contact-info-row">
+            <div class="info-line">
+              <span style="color:var(--gold);flex-shrink:0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span>
+              <span>
+                <strong style="color:var(--gold-light);">Bernard L. Charbonnet, Jr.</strong><br/>
+                President &amp; Principal
+              </span>
+            </div>
+            <div class="info-line">
+              <span style="color:var(--gold);flex-shrink:0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span>
+              <span>
+                <strong style="color:var(--gold-light);">Kathy C. Spiess</strong><br/>
+                Chief Administrative Officer / Senior Planner
+              </span>
+            </div>
+            <div class="info-line">
+              <span style="color:var(--gold);flex-shrink:0"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></span>
+              <span>
+                <strong style="color:var(--gold-light);">Joletta Golik</strong><br/>
+                Environmental Management Director
+              </span>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- End left column -->
+
+      <!-- ── Right column: contact form ── -->
+      <div>
+        <div style="background:rgba(255,255,255,0.06); border:1px solid rgba(201,168,76,0.25); border-radius:8px; padding:2rem;">
+          <h4 style="font-family:'Barlow',sans-serif; font-size:0.75rem; font-weight:700; letter-spacing:0.12em; text-transform:uppercase; color:var(--gold); margin-bottom:1.2rem;">
+            Send a Message
+          </h4>
+          <form class="contact-form" onsubmit="handleSubmit(event)">
+            <div class="form-row">
+              <div class="form-group">
+                <label>First Name</label>
+                <input type="text" placeholder="John" />
+              </div>
+              <div class="form-group">
+                <label>Last Name</label>
+                <input type="text" placeholder="Smith" />
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Organization</label>
+              <input type="text" placeholder="Agency / Company Name" />
+            </div>
+            <div class="form-group">
+              <label>Email Address</label>
+              <input type="email" placeholder="you@organization.gov" />
+            </div>
+            <div class="form-group">
+              <label>Service Area of Interest</label>
+              <select>
+                <option value="">Select a Service...</option>
+                <option>Aviation Consulting</option>
+                <option>Environmental Consulting &amp; Mitigation</option>
+                <option>Construction / Program Management</option>
+                <option>General Consulting &amp; Advisory</option>
+                <option>Social &amp; Environmental Justice / DBE</option>
+                <option>Legal Advisory Services</option>
+                <option>Multiple Services</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Message</label>
+              <textarea placeholder="Briefly describe your project or inquiry..."></textarea>
+            </div>
+            <button
+              type="submit"
+              class="btn-primary"
+              style="width:100%; text-align:center; border:none; cursor:pointer; font-size:0.85rem;"
+            >
+              Send Message →
+            </button>
+          </form>
+        </div>
+      </div>
+
+    </div><!-- End contact-grid -->
+  </div><!-- End section-inner -->
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <div class="footer-logo">
+      CAPC <span>| Charbonnet &amp; Associates Planners and Consultants, Inc.</span>
+    </div>
+    <ul class="footer-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#team">Team</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="footer-copy">
+      &copy; 2025 Charbonnet &amp; Associates Planners and Consultants, Inc.
+      All rights reserved. · Founded 1995 · New Orleans, LA
+    </div>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+
+</body>
+</html>
