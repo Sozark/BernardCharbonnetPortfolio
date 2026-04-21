@@ -94,7 +94,7 @@ nav {
 .nav-logo {
   font-family: 'Playfair Display', serif;
   font-weight: 700;
-  font-size: 1.35rem;
+  font-size: 2rem;
   color: var(--gold);
   letter-spacing: 0.03em;
   text-decoration: none;
@@ -148,58 +148,85 @@ nav {
   color: var(--navy) !important;
 }
 
-
 /* ==========================================================================
    SECTION 4: HERO SECTION (#home)
    Full-viewport-height dark navy hero with a subtle radial gold glow and
    a gradient fade at the bottom to blend into the next section.
    ========================================================================== */
 
-#home {
-  min-height: 100vh; /* Takes up at least the full screen height */
-  background: linear-gradient(160deg, var(--navy) 0%, var(--navy-mid) 55%, #0e2550 100%);
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: flex-start;
-  padding: 120px 2rem 80px; /* Top padding accounts for the fixed nav (68px) */
+
+#hero {
   position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   overflow: hidden;
-}
-
-/* Decorative radial gold glow in the upper-right — adds depth to the dark bg */
-#home::before {
-  content: '';
-  position: absolute;
-  top: -20%;
-  right: -10%;
-  width: 70vw;
-  height: 120vh;
-  background: radial-gradient(ellipse at center, rgba(201, 168, 76, 0.08) 0%, transparent 65%);
-  pointer-events: none; /* Invisible to mouse events — purely decorative */
-}
-
-/* Gradient fade at the bottom of the hero to blend into the cream background */
-#home::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 120px;
-  background: linear-gradient(to bottom, transparent, var(--cream));
-  pointer-events: none;
+  padding: 68px 2rem 80px;
 }
 
 /* Two-column grid: text on left, stats card on right */
 .hero-inner {
+  position: relative;
+  z-index: 2;
   max-width: 1300px;
   width: 100%;
   margin: 0 auto;
   display: grid;
-  grid-template-columns: 1fr 420px; /* Fixed 420px right column for the stats card */
+  grid-template-columns: 1fr 420px;
   gap: 4rem;
   align-items: center;
+}
+
+/* Make sure all decorative elements stay behind content */
+.grid-overlay,
+.scanlines,
+.grain,
+.orb {
+  position: absolute;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.hero-video-wrap {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.hero-video {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  min-width: 100%;
+  min-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: cover;
+}
+
+.hero-video-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(11,28,61,0.75) 0%,
+    rgba(11,28,61,0.55) 55%,
+    rgba(11,28,61,0.90) 100%
+  );
+}
+
+/* Everything inside hero sits above the video */
+.hero-content,
+.grid-overlay,
+.scanlines,
+.grain,
+.orb,
+.scroll-indicator {
+  position: relative;
+  z-index: 2;
 }
 
 /* Small all-caps label above the hero title (e.g., "Est. 1995 · New Orleans") */
@@ -215,7 +242,9 @@ nav {
   align-items: center;
   gap: 0.75rem;
 }
-
+.hero-text {
+  
+}
 /* Decorative gold dash before the eyebrow text */
 .hero-eyebrow::before {
   content: '';
