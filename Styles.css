@@ -1,209 +1,230 @@
 /* ==========================================================================
    CAPC — Charbonnet & Associates Planners and Consultants, Inc.
-   Stylesheet: styles.css
-   Description: All visual styling for the CAPC website. Organized into
-                clearly labeled sections that mirror the page structure.
-   Fonts used:  Playfair Display (headings), Source Serif 4 (body text),
-                Barlow (labels, navigation, UI text)
+   Stylesheet: Styles.css
+
+   Fonts:  Playfair Display (display headings)
+           Source Serif 4   (editorial body copy)
+           Barlow           (labels, navigation, UI text)
+
+   Approach: desktop-first structure with fluid type/spacing and a small,
+   consistent set of breakpoints (1080 / 960 / 720 / 520). Navy + gold is
+   preserved throughout — restrained, high-contrast, government-facing.
    ========================================================================== */
 
 
 /* ==========================================================================
-   SECTION 1: CSS CUSTOM PROPERTIES (Design Tokens)
-   These variables define the entire color palette and can be changed in
-   one place to update the look of the whole site. Navy + gold = credibility
-   and authority — ideal for a government-facing consulting firm.
+   1. DESIGN TOKENS
    ========================================================================== */
 :root {
-  /* Primary navy shades — used for backgrounds, headers, dark sections */
-  --navy:       #0B1C3D;   /* Darkest navy — main background */
-  --navy-mid:   #152B5E;   /* Mid navy — hero gradient midpoint */
-  --navy-light: #1E3A7A;   /* Lighter navy — hover states, accents */
+  /* Navy */
+  --navy:        #0B1C3D;
+  --navy-mid:    #152B5E;
+  --navy-light:  #1E3A7A;
+  --navy-darker: #060F1E;
 
-  /* Gold shades — used for accents, highlights, calls-to-action */
-  --gold:       #C9A84C;   /* Main gold */
-  --gold-light: #E2C97A;   /* Lighter gold — hover states, text on dark bg */
-  --gold-pale:  #F5E9C4;   /* Very pale gold — subtle backgrounds */
+  /* Gold */
+  --gold:        #C9A84C;
+  --gold-light:  #E2C97A;
+  --gold-pale:   #F5E9C4;
 
-  /* Neutral tones — used for page backgrounds and body text */
-  --cream:      #F9F6EF;   /* Warm off-white — main page background */
-  --white:      #FFFFFF;
-  --gray:       #6B7280;   /* Medium gray — secondary text */
-  --gray-light: #E5E7EB;   /* Light gray — borders, dividers */
-  --text-dark:  #1A1A2E;   /* Near-black — primary body text */
+  /* Neutrals */
+  --cream:       #F9F6EF;
+  --white:       #FFFFFF;
+  --gray:        #6B7280;
+  --gray-light:  #E5E7EB;
+  --text-dark:   #1A1A2E;
+  --text-body:   #3A3A4A;
+
+  /* Layout */
+  --maxw:        1240px;
+  --radius:      8px;
+  --radius-sm:   4px;
+  --header-h:    68px;
+
+  /* Fluid section rhythm */
+  --section-y:   clamp(64px, 9vw, 108px);
+  --gutter:      clamp(1.15rem, 5vw, 2rem);
+
+  --ease:        cubic-bezier(0.4, 0, 0.2, 1);
+  --shadow-card: 0 4px 24px rgba(11, 28, 61, 0.07);
+  --shadow-lift: 0 16px 48px rgba(11, 28, 61, 0.13);
 }
 
 
 /* ==========================================================================
-   SECTION 2: RESET & BASE STYLES
-   Removes default browser margin/padding and sets global defaults so all
-   elements start from a consistent baseline across browsers.
+   2. RESET & BASE
    ========================================================================== */
-
-/* Universal box-sizing: border-box makes width/height calculations intuitive */
 *, *::before, *::after {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
 
-/* Enables CSS smooth scrolling when clicking nav anchor links */
 html {
   scroll-behavior: smooth;
+  scroll-padding-top: calc(var(--header-h) + 16px);
+  -webkit-text-size-adjust: 100%;
 }
 
-/* Base body styles: serif font for editorial feel, warm cream background */
 body {
   font-family: 'Source Serif 4', Georgia, serif;
   background: var(--cream);
   color: var(--text-dark);
   line-height: 1.7;
-  overflow-x: hidden; /* Prevents horizontal scrollbars from animations */
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
+
+img, svg, video { display: block; max-width: 100%; }
+
+a { color: inherit; }
+
+button { font: inherit; color: inherit; }
+
+/* Visible keyboard focus everywhere */
+:focus-visible {
+  outline: 2px solid var(--gold);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+
+/* Skip link */
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -60px;
+  z-index: 2000;
+  background: var(--gold);
+  color: var(--navy);
+  font-family: 'Barlow', sans-serif;
+  font-weight: 600;
+  font-size: 0.85rem;
+  padding: 0.6rem 1rem;
+  border-radius: var(--radius-sm);
+  transition: top 0.2s var(--ease);
+  text-decoration: none;
+}
+.skip-link:focus { top: 1rem; }
 
 
 /* ==========================================================================
-   SECTION 3: NAVIGATION BAR
-   Fixed at the top of the screen so it stays visible while scrolling.
-   Uses backdrop-filter blur for a frosted-glass effect over page content.
+   3. SITE HEADER / NAVIGATION
    ========================================================================== */
-
-nav {
-  position: fixed;        /* Stays at top even when page scrolls */
-  top: 0;
-  left: 0;
-  right: 0;
-  z-index: 1000;          /* Sits on top of all other page content */
-  background: rgba(11, 28, 61, 0.97); /* Near-opaque navy */
-  backdrop-filter: blur(12px);        /* Frosted-glass blur behind nav */
-  border-bottom: 1px solid rgba(201, 168, 76, 0.3); /* Subtle gold bottom line */
-  padding: 0 2rem;
+.site-header {
+  position: fixed;
+  inset: 0 0 auto 0;
+  z-index: 1000;
+  background: rgba(11, 28, 61, 0.97);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(201, 168, 76, 0.30);
 }
 
-/* Centers and aligns the logo + links row */
 .nav-inner {
-  max-width: 1300px;
+  max-width: var(--maxw);
   margin: 0 auto;
+  padding: 0 var(--gutter);
   display: flex;
   align-items: center;
   justify-content: space-between;
-  height: 68px;
+  gap: 1rem;
+  min-height: var(--header-h);
 }
 
-/* "CAPC" logo text in the nav — Playfair serif for brand authority */
 .nav-logo {
   font-family: 'Playfair Display', serif;
   font-weight: 700;
-  font-size: 2rem;
+  font-size: clamp(1.5rem, 2.4vw, 1.95rem);
   color: var(--gold);
   letter-spacing: 0.03em;
   text-decoration: none;
-  flex-shrink: 0; /* Prevents logo from shrinking on smaller screens */
+  flex-shrink: 0;
+  line-height: 1;
 }
+.nav-logo span { color: var(--white); }
 
-/* The " | Charbonnet & Associates" part of the logo is white */
-.nav-logo span {
-  color: var(--white);
-}
+.primary-nav { display: flex; }
 
-/* Horizontal list of navigation links */
 .nav-links {
   display: flex;
-  gap: 0;
+  align-items: center;
   list-style: none;
   flex-wrap: wrap;
   justify-content: flex-end;
 }
 
-/* Individual nav link styles — uppercase small caps for a professional look */
 .nav-links a {
   font-family: 'Barlow', sans-serif;
   font-size: 0.72rem;
   font-weight: 500;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.75);
+  color: rgba(255, 255, 255, 0.78);
   text-decoration: none;
-  padding: 0.45rem 0.75rem;
-  transition: color 0.2s; /* Smooth color change on hover */
-  white-space: nowrap;    /* Prevents link text from wrapping to two lines */
+  padding: 0.5rem 0.7rem;
+  white-space: nowrap;
+  transition: color 0.2s var(--ease);
 }
+.nav-links a:hover,
+.nav-links a.is-active { color: var(--gold-light); }
 
-.nav-links a:hover {
-  color: var(--gold-light);
-}
-
-/* "Contact Us" button — stands out from the other links with a gold background */
 .nav-cta {
   background: var(--gold);
-  color: var(--navy) !important; /* Override the default white link color */
+  color: var(--navy) !important;
   border-radius: 3px;
   font-weight: 600 !important;
-  padding: 0.45rem 1rem !important;
-  margin-left: 0.5rem;
+  padding: 0.5rem 1rem !important;
+  margin-left: 0.6rem;
+  transition: background 0.2s var(--ease);
 }
+.nav-cta:hover { background: var(--gold-light); color: var(--navy) !important; }
 
-.nav-cta:hover {
-  background: var(--gold-light);
-  color: var(--navy) !important;
+/* Toggle button (hidden on desktop) */
+.nav-toggle {
+  display: none;
+  width: 44px;
+  height: 44px;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  padding: 10px;
+  flex-shrink: 0;
 }
+.nav-toggle-bar {
+  display: block;
+  width: 100%;
+  height: 2px;
+  background: var(--gold-light);
+  margin: 4px 0;
+  transition: transform 0.25s var(--ease), opacity 0.2s var(--ease);
+}
+.site-header.nav-open .nav-toggle-bar:nth-child(1) { transform: translateY(6px) rotate(45deg); }
+.site-header.nav-open .nav-toggle-bar:nth-child(2) { opacity: 0; }
+.site-header.nav-open .nav-toggle-bar:nth-child(3) { transform: translateY(-6px) rotate(-45deg); }
+
 
 /* ==========================================================================
-   SECTION 4: HERO SECTION (#home)
-   Full-viewport-height dark navy hero with a subtle radial gold glow and
-   a gradient fade at the bottom to blend into the next section.
+   4. HERO (#home)
    ========================================================================== */
-
-
-#hero {
+.hero {
   position: relative;
   min-height: 100vh;
   display: flex;
   align-items: center;
-  justify-content: center;
   overflow: hidden;
-  padding: 68px 2rem 80px;
+  padding: calc(var(--header-h) + clamp(2rem, 6vw, 4rem)) var(--gutter) clamp(3rem, 8vw, 5rem);
 }
 
-/* Two-column grid: text on left, stats card on right */
-.hero-inner {
-  position: relative;
-  z-index: 2;
-  max-width: 1300px;
-  width: 100%;
-  margin: 0 auto;
-  display: grid;
-  grid-template-columns: 1fr 420px;
-  gap: 4rem;
-  align-items: center;
-}
-
-/* Make sure all decorative elements stay behind content */
-.grid-overlay,
-.scanlines,
-.grain,
-.orb {
-  position: absolute;
-  z-index: 1;
-  pointer-events: none;
-}
-
-.hero-video-wrap {
-  position: absolute;
-  inset: 0;
-  z-index: 0;
-  overflow: hidden;
-}
+.hero-video-wrap { position: absolute; inset: 0; z-index: 0; overflow: hidden; }
 
 .hero-video {
   position: absolute;
-  top: 50%;
-  left: 50%;
+  top: 50%; left: 50%;
   transform: translate(-50%, -50%);
   min-width: 100%;
   min-height: 100%;
-  width: auto;
-  height: auto;
+  width: auto; height: auto;
   object-fit: cover;
 }
 
@@ -212,24 +233,24 @@ nav {
   inset: 0;
   background: linear-gradient(
     to bottom,
-    rgba(11,28,61,0.75) 0%,
-    rgba(11,28,61,0.55) 55%,
-    rgba(11,28,61,0.90) 100%
+    rgba(11, 28, 61, 0.78) 0%,
+    rgba(11, 28, 61, 0.58) 55%,
+    rgba(11, 28, 61, 0.92) 100%
   );
 }
 
-/* Everything inside hero sits above the video */
-.hero-content,
-.grid-overlay,
-.scanlines,
-.grain,
-.orb,
-.scroll-indicator {
+.hero-inner {
   position: relative;
   z-index: 2;
+  max-width: var(--maxw);
+  width: 100%;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 400px;
+  gap: clamp(2rem, 5vw, 4rem);
+  align-items: center;
 }
 
-/* Small all-caps label above the hero title (e.g., "Est. 1995 · New Orleans") */
 .hero-eyebrow {
   font-family: 'Barlow', sans-serif;
   font-size: 0.78rem;
@@ -242,107 +263,70 @@ nav {
   align-items: center;
   gap: 0.75rem;
 }
-.hero-text {
-  
-}
-/* Decorative gold dash before the eyebrow text */
 .hero-eyebrow::before {
   content: '';
-  display: block;
   width: 36px;
   height: 2px;
   background: var(--gold);
   flex-shrink: 0;
 }
 
-/* Main hero headline — clamp() scales font size responsively */
 .hero-title {
   font-family: 'Playfair Display', serif;
-  font-size: clamp(2.4rem, 5vw, 4.2rem); /* Min 2.4rem, scales to 5vw, max 4.2rem */
+  font-size: clamp(2.3rem, 5.2vw, 4.1rem);
   font-weight: 900;
   color: var(--white);
   line-height: 1.1;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.4rem;
   letter-spacing: -0.01em;
 }
+.hero-title .accent { color: var(--gold); }
 
-/* Gold accent text within the hero title */
-.hero-title .accent {
-  color: var(--gold);
-}
-
-/* Italic descriptive text below the main title */
 .hero-subtitle {
   font-family: 'Source Serif 4', serif;
-  font-size: 1.1rem;
-  color: rgba(255, 255, 255, 0.72);
+  font-size: clamp(1rem, 1.4vw, 1.12rem);
+  color: rgba(255, 255, 255, 0.74);
   line-height: 1.75;
-  margin-bottom: 2.5rem;
+  margin-bottom: 2.2rem;
   max-width: 560px;
   font-weight: 300;
   font-style: italic;
 }
 
-/* Wrapper for the two CTA buttons */
-.hero-buttons {
-  display: flex;
-  gap: 1rem;
-  flex-wrap: wrap; /* Stacks on very narrow screens */
-}
+.hero-buttons { display: flex; gap: 1rem; flex-wrap: wrap; }
 
-/* Solid gold primary CTA button — used throughout the site */
-.btn-primary {
-  background: var(--gold);
-  color: var(--navy);
+/* Buttons — shared */
+.btn-primary,
+.btn-outline {
   font-family: 'Barlow', sans-serif;
   font-weight: 600;
   font-size: 0.85rem;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  padding: 0.9rem 2.2rem;
+  padding: 0.9rem 2.1rem;
   text-decoration: none;
   border-radius: 3px;
-  transition: background 0.2s, transform 0.2s;
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 46px;
+  transition: background 0.2s var(--ease), transform 0.2s var(--ease), border-color 0.2s var(--ease), color 0.2s var(--ease);
 }
+.btn-primary { background: var(--gold); color: var(--navy); border: 1.5px solid var(--gold); }
+.btn-primary:hover { background: var(--gold-light); border-color: var(--gold-light); transform: translateY(-1px); }
+.btn-outline { border: 1.5px solid rgba(201, 168, 76, 0.6); color: var(--gold-light); font-weight: 500; }
+.btn-outline:hover { background: rgba(201, 168, 76, 0.12); border-color: var(--gold-light); }
 
-.btn-primary:hover {
-  background: var(--gold-light);
-  transform: translateY(-1px); /* Slight lift on hover */
-}
-
-/* Outlined secondary CTA button */
-.btn-outline {
-  border: 1.5px solid rgba(201, 168, 76, 0.6);
-  color: var(--gold-light);
-  font-family: 'Barlow', sans-serif;
-  font-weight: 500;
-  font-size: 0.85rem;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  padding: 0.9rem 2.2rem;
-  text-decoration: none;
-  border-radius: 3px;
-  transition: all 0.2s;
-  display: inline-block;
-}
-
-.btn-outline:hover {
-  background: rgba(201, 168, 76, 0.1);
-  border-color: var(--gold-light);
-}
-
-/* Stats card on the right side of the hero */
+/* Hero stats card */
 .hero-card {
   background: rgba(255, 255, 255, 0.06);
   border: 1px solid rgba(201, 168, 76, 0.25);
-  border-radius: 8px;
+  border-radius: var(--radius);
   padding: 2rem;
-  backdrop-filter: blur(6px); /* Frosted glass over the hero background */
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
 }
-
-/* "By the Numbers" label inside the stats card */
-.hero-card h3 {
+.hero-card h2 {
   font-family: 'Barlow', sans-serif;
   font-size: 0.82rem;
   font-weight: 600;
@@ -351,128 +335,81 @@ nav {
   letter-spacing: 0.04em;
   text-transform: uppercase;
 }
-
-/* Vertical stack of stat items */
-.stat-row {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-/* Each stat has a gold left border to visually separate them */
-.stat-item {
-  border-left: 2px solid var(--gold);
-  padding-left: 1rem;
-}
-
-/* Large number (e.g., "30+", "$3B+") */
+.stat-row { display: flex; flex-direction: column; gap: 1.1rem; }
+.stat-item { border-left: 2px solid var(--gold); padding-left: 1rem; }
 .stat-number {
   font-family: 'Playfair Display', serif;
-  font-size: 2rem;
+  font-size: 1.95rem;
   font-weight: 700;
   color: var(--white);
   line-height: 1;
 }
-
-/* Descriptive text below the number */
 .stat-label {
   font-family: 'Barlow', sans-serif;
   font-size: 0.78rem;
-  color: rgba(255, 255, 255, 0.55);
+  color: rgba(255, 255, 255, 0.58);
   letter-spacing: 0.05em;
-  margin-top: 0.2rem;
+  margin-top: 0.25rem;
 }
 
 
 /* ==========================================================================
-   SECTION 5: PRIORITY TARGETS BANNER
-   A full-width dark navy strip directly below the hero that highlights the
-   two primary contract targets: Lambert Airport and LCTCS. This is the most
-   strategic element — it immediately signals intent to any procurement officer
-   viewing the site.
+   5. CREDENTIALS STRIP
    ========================================================================== */
-
-.targets-banner {
+.trust-bar {
   background: linear-gradient(90deg, var(--navy) 0%, var(--navy-light) 100%);
-  border-top: 3px solid var(--gold); /* Gold top accent line */
-  padding: 2.5rem 2rem;
+  border-top: 3px solid var(--gold);
+  padding: 1.5rem var(--gutter);
 }
-
-/* Three-column layout: label | target 1 | target 2 */
-.targets-inner {
-  max-width: 1300px;
+.trust-inner {
+  max-width: var(--maxw);
   margin: 0 auto;
-  display: grid;
-  grid-template-columns: auto 1fr 1fr;
-  gap: 2rem;
+  display: flex;
   align-items: center;
+  gap: 1.5rem;
+  flex-wrap: wrap;
 }
-
-/* "Active Pursuits" label on the far left */
-.targets-label {
+.trust-label {
   font-family: 'Barlow', sans-serif;
-  font-size: 0.72rem;
+  font-size: 0.68rem;
   font-weight: 700;
-  letter-spacing: 0.15em;
+  letter-spacing: 0.16em;
   text-transform: uppercase;
   color: var(--gold);
+  padding-right: 1.5rem;
+  border-right: 1px solid rgba(201, 168, 76, 0.3);
   white-space: nowrap;
-  padding-right: 2rem;
-  border-right: 1px solid rgba(201, 168, 76, 0.3); /* Vertical divider */
 }
-
-/* Each target opportunity block */
-.target-item {
-  padding-left: 2rem;
+.trust-list {
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem 1.6rem;
 }
-
-.target-item h4 {
-  font-family: 'Playfair Display', serif;
-  font-size: 1rem;
-  color: var(--white);
-  margin-bottom: 0.25rem;
-}
-
-.target-item p {
+.trust-list li {
   font-family: 'Barlow', sans-serif;
-  font-size: 0.8rem;
-  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.82rem;
+  color: rgba(255, 255, 255, 0.82);
+  display: flex;
+  align-items: center;
+  gap: 0.55rem;
 }
-
-/* Gold "Priority" tag pill above each target title */
-.target-tag {
-  display: inline-block;
+.trust-list li::before {
+  content: '';
+  width: 6px; height: 6px;
+  border-radius: 50%;
   background: var(--gold);
-  color: var(--navy);
-  font-family: 'Barlow', sans-serif;
-  font-size: 0.65rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  padding: 0.2rem 0.5rem;
-  border-radius: 2px;
-  margin-bottom: 0.4rem;
+  flex-shrink: 0;
 }
 
 
 /* ==========================================================================
-   SECTION 6: SHARED SECTION UTILITIES
-   Reusable classes applied across multiple sections for consistent spacing,
-   typography hierarchy, and decorative elements.
+   6. SHARED SECTION UTILITIES
    ========================================================================== */
+section { padding: var(--section-y) var(--gutter); }
 
-/* Standard section vertical padding */
-section {
-  padding: 90px 2rem;
-}
+.section-inner { max-width: var(--maxw); margin: 0 auto; }
 
-/* Constrains section content to a readable max width and centers it */
-.section-inner {
-  max-width: 1300px;
-  margin: 0 auto;
-}
-
-/* Small gold eyebrow label above section headings (e.g., "What We Do") */
 .section-tag {
   font-family: 'Barlow', sans-serif;
   font-size: 0.72rem;
@@ -485,71 +422,59 @@ section {
   gap: 0.6rem;
   margin-bottom: 0.8rem;
 }
-
-/* Decorative dash before the section tag label */
 .section-tag::before {
   content: '';
-  width: 28px;
-  height: 2px;
+  width: 28px; height: 2px;
   background: var(--gold);
   flex-shrink: 0;
 }
+.section-tag.on-dark { color: var(--gold-light); }
 
-/* Main section heading */
 .section-title {
   font-family: 'Playfair Display', serif;
-  font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+  font-size: clamp(1.75rem, 3.6vw, 2.7rem);
   font-weight: 700;
   color: var(--navy);
   line-height: 1.2;
   margin-bottom: 1rem;
 }
 
-/* Descriptive paragraph that introduces each section */
 .section-lead {
-  font-size: 1.05rem;
+  font-size: clamp(1rem, 1.3vw, 1.05rem);
   color: var(--gray);
   max-width: 680px;
   line-height: 1.8;
-  margin-bottom: 3rem;
+  margin-bottom: clamp(2rem, 4vw, 3rem);
   font-weight: 300;
 }
 
-/* Short gold horizontal rule below section titles */
 .divider {
   width: 56px;
   height: 3px;
   background: var(--gold);
-  margin: 1.2rem 0 2.5rem;
+  margin: 1.2rem 0 2.4rem;
 }
 
 
 /* ==========================================================================
-   SECTION 7: FIRM OVERVIEW (#about)
-   Two-column layout: descriptive text on the left, client list card on right.
+   7. FIRM OVERVIEW (#about)
    ========================================================================== */
+#about { background: var(--cream); }
 
-#about {
-  background: var(--cream);
-}
-
-/* Side-by-side layout for text content and client list */
 .about-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 5rem;
+  gap: clamp(2.5rem, 5vw, 5rem);
   align-items: start;
 }
 
-/* Body paragraphs in the about section */
 .about-text p {
-  color: #3a3a4a;
+  color: var(--text-body);
   line-height: 1.85;
   margin-bottom: 1.2rem;
   font-size: 1.02rem;
 }
 
-/* Dark navy pull-quote block at the bottom of the about text */
 .about-highlight {
   background: var(--navy);
   color: var(--white);
@@ -557,17 +482,13 @@ section {
   border-radius: 6px;
   margin-top: 1.5rem;
 }
-
 .about-highlight p {
   font-family: 'Source Serif 4', serif;
   font-style: italic;
   font-size: 1.1rem;
   color: rgba(255, 255, 255, 0.9);
   line-height: 1.7;
-  margin: 0;
 }
-
-/* Gold attribution line below the pull-quote */
 .about-highlight cite {
   display: block;
   font-family: 'Barlow', sans-serif;
@@ -579,31 +500,38 @@ section {
   font-weight: 500;
 }
 
-/* White card with shadow holding the client list on the right */
 .presence-card {
   background: var(--white);
   border: 1px solid var(--gray-light);
-  border-radius: 8px;
+  border-radius: var(--radius);
   padding: 2rem;
-  box-shadow: 0 4px 24px rgba(11, 28, 61, 0.07);
+  box-shadow: var(--shadow-card);
+  position: sticky;
+  top: calc(var(--header-h) + 24px);
 }
-
 .presence-card h3 {
   font-family: 'Playfair Display', serif;
-  font-size: 1.1rem;
+  font-size: 1.15rem;
   color: var(--navy);
-  margin-bottom: 1.5rem;
+  margin-bottom: 1.25rem;
 }
+.client-group-label {
+  font-family: 'Barlow', sans-serif;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin: 1.4rem 0 0.6rem;
+}
+.client-group-label:first-of-type { margin-top: 0; }
 
-/* Vertical list of client/project names */
 .client-list {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 0.6rem;
+  gap: 0.5rem;
 }
-
-/* Each client row with a left colored border */
 .client-list li {
   font-family: 'Barlow', sans-serif;
   font-size: 0.85rem;
@@ -611,152 +539,90 @@ section {
   padding: 0.5rem 0.75rem;
   border-left: 3px solid var(--gold-pale);
   background: var(--cream);
-  border-radius: 0 4px 4px 0;
-  transition: border-color 0.2s;
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  transition: border-color 0.2s var(--ease);
 }
-
-.client-list li:hover {
-  border-left-color: var(--gold); /* Gold on hover */
-}
-
-.client-list li strong {
-  color: var(--navy);
-}
+.client-list li:hover { border-left-color: var(--gold); }
+.client-list li strong { color: var(--navy); font-weight: 600; }
 
 
 /* ==========================================================================
-   SECTION 8: SERVICES (#services)
-   Three-column card grid. "Featured" cards use the dark navy background
-   to highlight Aviation Consulting and Environmental Consulting — the two
-   service areas most relevant to the target contracts.
+   8. SERVICES (#services)
    ========================================================================== */
+#services { background: var(--white); }
 
-#services {
-  background: var(--white);
-}
-
-/* Responsive 3-column grid of service cards */
 .services-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1.5rem;
 }
 
-/* Standard service card — cream background */
 .service-card {
   background: var(--cream);
   border: 1px solid var(--gray-light);
-  border-radius: 8px;
+  border-radius: var(--radius);
   padding: 2rem;
   position: relative;
   overflow: hidden;
-  transition: transform 0.25s, box-shadow 0.25s;
-  cursor: default;
+  transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease);
 }
-
-/* Animated gold top border that slides in on hover */
 .service-card::before {
   content: '';
   position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
+  inset: 0 0 auto 0;
   height: 4px;
   background: var(--gold);
-  transform: scaleX(0);        /* Hidden by default */
+  transform: scaleX(0);
   transform-origin: left;
-  transition: transform 0.3s;
+  transition: transform 0.3s var(--ease);
 }
+.service-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lift); }
+.service-card:hover::before { transform: scaleX(1); }
 
-/* Lift + shadow on hover */
-.service-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 16px 48px rgba(11, 28, 61, 0.12);
-}
-
-/* Show the gold top bar on hover */
-.service-card:hover::before {
-  transform: scaleX(1);
-}
-
-/* Featured (priority) service cards — dark navy version */
 .service-card.featured {
   background: var(--navy);
   border-color: var(--navy);
   color: var(--white);
 }
+.service-card.featured::before { transform: scaleX(1); }
 
-/* Featured cards always show their gold top bar */
-.service-card.featured::before {
-  transform: scaleX(1);
-}
+.service-icon { color: var(--navy); margin-bottom: 1rem; }
+.service-card.featured .service-icon { color: var(--gold); }
 
-/* Emoji icon at the top of each service card */
-.service-icon {
-  font-size: 2rem;
-  margin-bottom: 1rem;
-  display: block;
-}
-
-/* Service card title */
 .service-card h3 {
   font-family: 'Playfair Display', serif;
-  font-size: 1.05rem;
+  font-size: 1.1rem;
   color: var(--navy);
   margin-bottom: 0.8rem;
   line-height: 1.3;
 }
+.service-card.featured h3 { color: var(--gold); }
 
-/* Featured card title is gold */
-.service-card.featured h3 {
-  color: var(--gold);
-}
-
-/* Body paragraph in a service card */
 .service-card p {
   font-family: 'Barlow', sans-serif;
   font-size: 0.88rem;
   color: var(--gray);
   line-height: 1.65;
 }
+.service-card.featured p { color: rgba(255, 255, 255, 0.72); }
 
-.service-card.featured p {
-  color: rgba(255, 255, 255, 0.7);
-}
-
-/* Bullet list of specific capabilities within a service card */
-.service-bullets {
-  list-style: none;
-  margin-top: 1rem;
-}
-
+.service-bullets { list-style: none; margin-top: 1rem; }
 .service-bullets li {
   font-family: 'Barlow', sans-serif;
   font-size: 0.82rem;
   color: var(--gray);
-  padding: 0.3rem 0;
-  padding-left: 1.2em;
+  padding: 0.3rem 0 0.3rem 1.2em;
   position: relative;
 }
-
-/* Gold "›" arrow as the custom bullet point */
 .service-bullets li::before {
-  content: '›';
+  content: '\203A';
   position: absolute;
   left: 0;
   color: var(--gold);
   font-weight: 700;
 }
+.service-card.featured .service-bullets li { color: rgba(255, 255, 255, 0.68); }
 
-.service-card.featured .service-bullets li {
-  color: rgba(255, 255, 255, 0.65);
-}
-
-.service-card.featured .service-bullets li::before {
-  color: var(--gold);
-}
-
-/* "Core Practice" / "Target Area" badge in the card's top-right corner */
 .featured-badge {
   position: absolute;
   top: 1rem;
@@ -774,68 +640,25 @@ section {
 
 
 /* ==========================================================================
-   SECTION 9: PROJECTS (#projects)
-   Filterable grid of project cards. Featured projects span full width and
-   use dark backgrounds to stand out — Lambert Airport and LCTCS get these.
+   9. PROJECTS (#projects)
    ========================================================================== */
+#projects { background: var(--cream); }
 
-#projects {
-  background: var(--cream);
-}
-
-/* Row of filter buttons ("All", "Environmental", "Aviation", etc.) */
-.projects-filter {
-  display: flex;
-  gap: 0.5rem;
-  flex-wrap: wrap;
-  margin-bottom: 2.5rem;
-}
-
-/* Individual filter pill button */
-.filter-btn {
-  font-family: 'Barlow', sans-serif;
-  font-size: 0.78rem;
-  font-weight: 500;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
-  padding: 0.5rem 1.1rem;
-  border-radius: 50px;
-  border: 1.5px solid var(--gray-light);
-  background: transparent;
-  color: var(--gray);
-  cursor: pointer;
-  transition: all 0.2s;
-}
-
-/* Active / hovered filter button turns navy */
-.filter-btn.active,
-.filter-btn:hover {
-  background: var(--navy);
-  border-color: var(--navy);
-  color: var(--white);
-}
-
-/* 3-column grid for project cards */
 .projects-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1.2rem;
 }
 
-/* Individual project card */
 .project-item {
   background: var(--white);
-  border-radius: 8px;
-  padding: 1.5rem;
   border: 1px solid var(--gray-light);
-  transition: box-shadow 0.2s;
+  border-radius: var(--radius);
+  padding: 1.5rem;
+  transition: box-shadow 0.2s var(--ease), transform 0.2s var(--ease);
 }
+.project-item:hover { box-shadow: var(--shadow-lift); transform: translateY(-3px); }
 
-.project-item:hover {
-  box-shadow: 0 8px 32px rgba(11, 28, 61, 0.1);
-}
-
-/* Colored category tag above each project title */
 .project-tag {
   display: inline-block;
   font-family: 'Barlow', sans-serif;
@@ -847,151 +670,130 @@ section {
   border-radius: 2px;
   margin-bottom: 0.7rem;
 }
+.tag-env          { background: #D1FAE5; color: #065F46; }
+.tag-aviation     { background: #DBEAFE; color: #1E3A8A; }
+.tag-construction { background: #FEF3C7; color: #92400E; }
+.tag-general      { background: #EDE9FE; color: #4C1D95; }
+.tag-dbe          { background: #FCE7F3; color: #831843; }
 
-/* Color-coded category tags — each service type has its own color */
-.tag-env          { background: #D1FAE5; color: #065F46; } /* Green — Environmental */
-.tag-aviation     { background: #DBEAFE; color: #1E3A8A; } /* Blue — Aviation */
-.tag-construction { background: #FEF3C7; color: #92400E; } /* Amber — Construction */
-.tag-general      { background: #EDE9FE; color: #4C1D95; } /* Purple — General */
-.tag-dbe          { background: #FCE7F3; color: #831843; } /* Pink — DBE / Outreach */
-.tag-social       { background: #ECFDF5; color: #064E3B; } /* Teal — Social Justice */
-
-/* Project title within a card */
 .project-item h4 {
   font-family: 'Source Serif 4', serif;
-  font-size: 0.95rem;
+  font-size: 0.98rem;
   font-weight: 600;
   color: var(--navy);
-  margin-bottom: 0.4rem;
+  margin-bottom: 0.5rem;
   line-height: 1.35;
 }
-
-/* Location line (e.g., "📍 St. Louis, MO") */
 .project-item .location {
   font-family: 'Barlow', sans-serif;
   font-size: 0.78rem;
   color: var(--gray);
   display: flex;
   align-items: center;
-  gap: 0.3rem;
+  gap: 0.4rem;
+}
+.project-item .location::before {
+  content: '';
+  width: 12px; height: 12px;
+  flex-shrink: 0;
+  background: var(--gold);
+  -webkit-mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z'/%3E%3Ccircle cx='12' cy='10' r='3'/%3E%3C/svg%3E") center / contain no-repeat;
+          mask: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z'/%3E%3Ccircle cx='12' cy='10' r='3'/%3E%3C/svg%3E") center / contain no-repeat;
 }
 
-/* Full-width featured project card — used for Lambert Airport and LCTCS */
+/* Full-width flagship project cards */
 .project-featured {
-  grid-column: span 3;       /* Spans all 3 columns */
+  grid-column: 1 / -1;
   background: var(--navy);
   color: var(--white);
-  padding: 2rem 2.5rem;
-  border-radius: 8px;
+  padding: clamp(1.75rem, 4vw, 2.5rem);
+  border-radius: var(--radius);
   display: grid;
-  grid-template-columns: 1fr 1fr; /* Text left, detail bullets right */
-  gap: 2rem;
+  grid-template-columns: 1fr 1fr;
+  gap: clamp(1.5rem, 3vw, 2.5rem);
   align-items: center;
-  border: none;
 }
-
-/* Featured project heading in gold */
+.project-featured.alt {
+  background: linear-gradient(135deg, #0e2550, #1a3a7a);
+}
+.eyebrow-tag {
+  display: inline-block;
+  background: var(--gold);
+  color: var(--navy);
+  font-family: 'Barlow', sans-serif;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  padding: 0.22rem 0.55rem;
+  border-radius: 2px;
+  margin-bottom: 0.8rem;
+}
 .project-featured h3 {
   font-family: 'Playfair Display', serif;
-  font-size: 1.3rem;
+  font-size: clamp(1.2rem, 2.2vw, 1.4rem);
   color: var(--gold);
   margin-bottom: 0.8rem;
   line-height: 1.3;
 }
-
-/* Featured project body text */
 .project-featured p {
   font-family: 'Barlow', sans-serif;
   font-size: 0.88rem;
-  color: rgba(255, 255, 255, 0.7);
+  color: rgba(255, 255, 255, 0.74);
   line-height: 1.7;
 }
-
-/* Right column of the featured card — vertical stack of detail rows */
-.project-featured-detail {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-/* Each detail row inside the featured card */
+.project-featured-detail { display: flex; flex-direction: column; gap: 0.9rem; }
 .detail-item {
-  display: flex;
-  align-items: flex-start;
-  gap: 0.8rem;
-  padding: 0.8rem 1rem;
+  padding: 0.85rem 1rem;
   background: rgba(255, 255, 255, 0.06);
   border-radius: 6px;
-  border-left: 3px solid var(--gold); /* Gold left accent line */
+  border-left: 3px solid var(--gold);
 }
-
 .detail-item p {
   font-family: 'Barlow', sans-serif;
   font-size: 0.82rem;
-  color: rgba(255, 255, 255, 0.75);
-  line-height: 1.5;
-  margin: 0;
+  color: rgba(255, 255, 255, 0.78);
+  line-height: 1.55;
 }
-
-/* Bold category labels within detail items */
-.detail-item strong {
-  color: var(--gold-light);
-}
+.detail-item strong { color: var(--gold-light); }
 
 
 /* ==========================================================================
-   SECTION 10: TEAM (#team)
-   Three team member cards. Header is dark navy with the member's initial
-   avatar; body is cream with credentials listed at the bottom.
+   10. TEAM (#team)
    ========================================================================== */
+#team { background: var(--white); }
 
-#team {
-  background: var(--white);
-}
-
-/* Three-column grid for team cards */
 .team-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 2rem;
 }
 
-/* Outer card container */
 .team-card {
   background: var(--cream);
-  border-radius: 8px;
-  overflow: hidden;
   border: 1px solid var(--gray-light);
-  transition: transform 0.25s, box-shadow 0.25s;
+  border-radius: var(--radius);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.25s var(--ease), box-shadow 0.25s var(--ease);
 }
+.team-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lift); }
 
-.team-card:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 16px 40px rgba(11, 28, 61, 0.1);
-}
-
-/* Dark header of each team card */
 .team-card-header {
   background: var(--navy);
   padding: 2rem;
   position: relative;
 }
-
-/* Decorative gradient line at the bottom of the header */
 .team-card-header::after {
   content: '';
   position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
+  inset: auto 0 0 0;
   height: 4px;
   background: linear-gradient(90deg, var(--gold), transparent);
 }
-
-/* Circular initials avatar */
 .team-avatar {
-  width: 80px;
-  height: 80px;
+  width: 72px; height: 72px;
   border-radius: 50%;
   background: var(--navy-light);
   border: 3px solid var(--gold);
@@ -999,33 +801,24 @@ section {
   align-items: center;
   justify-content: center;
   font-family: 'Playfair Display', serif;
-  font-size: 1.8rem;
+  font-size: 1.55rem;
   color: var(--gold);
   font-weight: 700;
   margin-bottom: 1rem;
 }
-
-/* Team member name */
 .team-name {
   font-family: 'Playfair Display', serif;
   font-size: 1.1rem;
   color: var(--white);
   margin-bottom: 0.2rem;
 }
-
-/* Team member title / role */
 .team-title {
   font-family: 'Barlow', sans-serif;
   font-size: 0.78rem;
   color: var(--gold-light);
-  letter-spacing: 0.05em;
+  letter-spacing: 0.04em;
 }
-
-/* Body section of the team card */
-.team-body {
-  padding: 1.5rem 2rem;
-}
-
+.team-body { padding: 1.5rem 2rem 1.75rem; display: flex; flex-direction: column; flex: 1; }
 .team-body p {
   font-family: 'Barlow', sans-serif;
   font-size: 0.85rem;
@@ -1033,215 +826,163 @@ section {
   line-height: 1.7;
   margin-bottom: 1rem;
 }
-
-/* Stack of credential chips at the bottom of each team card */
 .team-credentials {
   display: flex;
   flex-direction: column;
   gap: 0.4rem;
+  margin-top: auto;
+  padding-top: 0.5rem;
 }
-
-/* Individual credential chip */
 .credential {
   font-family: 'Barlow', sans-serif;
   font-size: 0.78rem;
   color: var(--navy);
-  padding: 0.3rem 0.6rem;
+  padding: 0.35rem 0.65rem;
   background: var(--white);
   border-radius: 3px;
   border: 1px solid var(--gray-light);
   display: flex;
   gap: 0.5rem;
   align-items: flex-start;
+  line-height: 1.4;
 }
-
-/* Gold checkmark before each credential */
 .credential::before {
-  content: '✓';
-  color: var(--gold);
-  font-weight: 700;
+  content: '';
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: var(--gold);
   flex-shrink: 0;
+  margin-top: 6px;
 }
 
 
 /* ==========================================================================
-   SECTION 11: SOCIAL & ENVIRONMENTAL JUSTICE (#justice)
-   Full dark navy section with two columns: definition cards on the left,
-   and the firm's protocol/methodology list on the right.
+   11. SOCIAL & ENVIRONMENTAL JUSTICE (#justice)
    ========================================================================== */
+#justice { background: var(--navy); }
+#justice .section-title { color: var(--white); }
+#justice .section-lead { color: rgba(255, 255, 255, 0.68); }
 
-#justice {
-  background: var(--navy);
-}
-
-/* Override light section title color for dark background */
-#justice .section-title {
-  color: var(--white);
-}
-
-/* Override section lead color for dark background */
-#justice .section-lead {
-  color: rgba(255, 255, 255, 0.65);
-}
-
-/* Two-column layout: definitions left, protocol list right */
 .justice-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 3rem;
+  gap: clamp(2rem, 4vw, 3rem);
   align-items: start;
 }
-
-/* Individual definition card (Social Justice / Environmental Justice / DBE) */
 .justice-def-card {
   background: rgba(255, 255, 255, 0.06);
   border: 1px solid rgba(201, 168, 76, 0.25);
-  border-radius: 8px;
-  padding: 2rem;
+  border-radius: var(--radius);
+  padding: 1.75rem 2rem;
   margin-bottom: 1.2rem;
 }
-
+.justice-def-card:last-child { margin-bottom: 0; }
 .justice-def-card h4 {
   font-family: 'Playfair Display', serif;
-  font-size: 1rem;
+  font-size: 1.05rem;
   color: var(--gold);
   margin-bottom: 0.7rem;
 }
-
 .justice-def-card p {
   font-family: 'Barlow', sans-serif;
   font-size: 0.88rem;
-  color: rgba(255, 255, 255, 0.72);
+  color: rgba(255, 255, 255, 0.74);
   line-height: 1.7;
 }
-
-/* Vertical list of protocol steps (Research, Communicate, Go to them...) */
+.justice-quote {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.15rem;
+  color: var(--gold-light);
+  font-style: italic;
+  margin-bottom: 1.5rem;
+}
 .justice-protocol {
   list-style: none;
   display: flex;
   flex-direction: column;
-  gap: 0.8rem;
-}
-
-/* Each protocol step is icon + text */
-.justice-protocol li {
-  display: flex;
   gap: 1rem;
-  align-items: flex-start;
 }
-
-/* Emoji icon for each protocol step */
-.protocol-icon {
-  font-size: 1.2rem;
-  flex-shrink: 0;
-  margin-top: 0.1rem;
-}
-
+.justice-protocol li { display: flex; gap: 1rem; align-items: flex-start; }
+.protocol-icon { color: var(--gold-light); flex-shrink: 0; margin-top: 0.15rem; }
 .justice-protocol p {
   font-family: 'Barlow', sans-serif;
   font-size: 0.88rem;
-  color: rgba(255, 255, 255, 0.72);
+  color: rgba(255, 255, 255, 0.74);
   line-height: 1.6;
-  margin: 0;
 }
-
-/* Bold keyword at the start of each protocol step */
-.justice-protocol strong {
-  color: var(--gold-light);
-}
+.justice-protocol strong { color: var(--gold-light); }
 
 
 /* ==========================================================================
-   SECTION 12: LEGAL ADVISORY (#legal)
-   Two-column layout: descriptive text on the left, practice area chips
-   on the right in a 2x5 grid.
+   12. LEGAL ADVISORY (#legal)
    ========================================================================== */
+#legal { background: var(--cream); }
 
-#legal {
-  background: var(--cream);
-}
-
-/* Side-by-side grid: text description | practice area chips */
 .legal-grid {
   display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 3rem;
+  grid-template-columns: 1.15fr 1fr;
+  gap: clamp(2rem, 4vw, 3rem);
   align-items: start;
 }
-
-/* Body paragraphs in the legal section */
 .legal-text p {
-  color: #3a3a4a;
+  color: var(--text-body);
   line-height: 1.85;
   margin-bottom: 1.2rem;
   font-size: 1rem;
 }
-
-/* 2-column grid for the practice area chips */
+.legal-side-title {
+  font-family: 'Playfair Display', serif;
+  color: var(--navy);
+  margin-bottom: 1.2rem;
+  font-size: 1.15rem;
+}
 .legal-practice-areas {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 0.8rem;
 }
-
-/* Navy chip for each practice area (e.g., "Construction Law") */
 .practice-chip {
   background: var(--navy);
   color: var(--white);
   font-family: 'Barlow', sans-serif;
   font-size: 0.8rem;
-  padding: 0.6rem 0.8rem;
-  border-radius: 4px;
+  padding: 0.65rem 0.85rem;
+  border-radius: var(--radius-sm);
   display: flex;
-  align-items: center;
-  gap: 0.5rem;
+  align-items: flex-start;
+  gap: 0.55rem;
+  line-height: 1.35;
 }
-
-/* Gold scale emoji icon before each chip */
 .practice-chip::before {
-  content: '⚖';
-  color: var(--gold);
-  font-size: 0.9rem;
+  content: '';
+  width: 10px; height: 2px;
+  background: var(--gold);
+  flex-shrink: 0;
+  margin-top: 0.55rem;
 }
 
 
 /* ==========================================================================
-   SECTION 13: CONTACT (#contact)
-   Dark navy section with contact info cards on the left and a message
-   form on the right.
+   13. CONTACT (#contact)
    ========================================================================== */
+#contact { background: var(--navy); }
+#contact .section-title { color: var(--white); }
+#contact .section-lead { color: rgba(255, 255, 255, 0.65); }
 
-#contact {
-  background: var(--navy);
-  padding: 90px 2rem;
-}
-
-/* Override heading colors for dark background */
-#contact .section-title {
-  color: var(--white);
-}
-
-#contact .section-lead {
-  color: rgba(255, 255, 255, 0.6);
-}
-
-/* Two-column layout: info cards left | form right */
 .contact-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 4rem;
+  gap: clamp(2rem, 4vw, 4rem);
+  align-items: start;
 }
-
-/* Individual contact information card */
 .contact-card {
   background: rgba(255, 255, 255, 0.06);
   border: 1px solid rgba(201, 168, 76, 0.25);
-  border-radius: 8px;
-  padding: 2rem;
-  margin-bottom: 1.5rem;
+  border-radius: var(--radius);
+  padding: 1.75rem 2rem;
+  margin-bottom: 1.25rem;
 }
-
-/* Card section label (e.g., "Corporate Headquarters") */
+.contact-card:last-child { margin-bottom: 0; }
 .contact-card h4 {
   font-family: 'Barlow', sans-serif;
   font-size: 0.75rem;
@@ -1251,284 +992,262 @@ section {
   color: var(--gold);
   margin-bottom: 1rem;
 }
-
-/* Vertical stack of info lines within a contact card */
-.contact-info-row {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-}
-
-/* Each info line (icon + text) */
+.contact-info-row { display: flex; flex-direction: column; gap: 0.8rem; }
 .info-line {
   display: flex;
   align-items: flex-start;
   gap: 0.75rem;
   font-family: 'Barlow', sans-serif;
   font-size: 0.88rem;
-  color: rgba(255, 255, 255, 0.8);
+  color: rgba(255, 255, 255, 0.82);
   line-height: 1.5;
 }
+.info-icon { color: var(--gold); flex-shrink: 0; margin-top: 0.1rem; }
+.info-line a { color: var(--gold-light); text-decoration: none; }
+.info-line a:hover { text-decoration: underline; }
+.info-line strong { color: var(--gold-light); }
 
-/* Gold icon at the start of each info line */
-.info-line span:first-child {
+/* Form */
+.contact-form-wrap {
+  background: rgba(255, 255, 255, 0.06);
+  border: 1px solid rgba(201, 168, 76, 0.25);
+  border-radius: var(--radius);
+  padding: 2rem;
+}
+.contact-form-title {
+  font-family: 'Barlow', sans-serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
   color: var(--gold);
-  flex-shrink: 0;
+  margin-bottom: 1.2rem;
 }
-
-
-/* ── Contact Form ── */
-
-/* Vertical stack for the form fields */
-.contact-form {
-  display: flex;
-  flex-direction: column;
-  gap: 1rem;
-}
-
-/* Side-by-side two fields in one row (First Name / Last Name) */
-.form-row {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1rem;
-}
-
-/* Wrapper for label + input pairs */
-.form-group {
-  display: flex;
-  flex-direction: column;
-  gap: 0.4rem;
-}
-
-/* Input field label above each form control */
+.contact-form { display: flex; flex-direction: column; gap: 1rem; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+.form-group { display: flex; flex-direction: column; gap: 0.4rem; }
 .form-group label {
   font-family: 'Barlow', sans-serif;
   font-size: 0.75rem;
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: rgba(255, 255, 255, 0.55);
+  color: rgba(255, 255, 255, 0.6);
 }
-
-/* Shared styles for all form controls (text inputs, select, textarea) */
 .form-group input,
 .form-group select,
 .form-group textarea {
-  background: rgba(255, 255, 255, 0.07);
-  border: 1px solid rgba(255, 255, 255, 0.15);
-  border-radius: 4px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.16);
+  border-radius: var(--radius-sm);
   color: var(--white);
   font-family: 'Barlow', sans-serif;
   font-size: 0.9rem;
   padding: 0.75rem 1rem;
-  transition: border-color 0.2s;
+  transition: border-color 0.2s var(--ease), background 0.2s var(--ease);
   outline: none;
+  width: 100%;
 }
-
-/* Gold border highlights focused field */
+.form-group input::placeholder,
+.form-group textarea::placeholder { color: rgba(255, 255, 255, 0.4); }
 .form-group input:focus,
 .form-group select:focus,
 .form-group textarea:focus {
   border-color: var(--gold);
+  background: rgba(255, 255, 255, 0.12);
 }
+.form-group textarea { resize: vertical; min-height: 120px; }
+.form-group select option { background: var(--navy); color: var(--white); }
 
-/* Textarea is vertically resizable */
-.form-group textarea {
-  resize: vertical;
-  min-height: 110px;
-}
-
-/* Dropdown options inherit the dark navy background */
-.form-group select option {
-  background: var(--navy);
-  color: var(--white);
+.form-submit { width: 100%; border: none; cursor: pointer; margin-top: 0.4rem; }
+.form-status {
+  font-family: 'Barlow', sans-serif;
+  font-size: 0.85rem;
+  color: var(--gold-light);
+  min-height: 1.2em;
+  margin: 0;
 }
 
 
 /* ==========================================================================
-   SECTION 14: FOOTER
-   Dark strip at the bottom with logo, footer links, and copyright.
+   14. FOOTER
    ========================================================================== */
-
 footer {
-  background: #060F1E; /* Slightly darker than navy for contrast */
-  padding: 2rem;
+  background: var(--navy-darker);
+  padding: 2rem var(--gutter);
   text-align: center;
   border-top: 1px solid rgba(201, 168, 76, 0.15);
 }
-
-/* Three-item row: logo | links | copyright */
 .footer-inner {
-  max-width: 1300px;
+  max-width: var(--maxw);
   margin: 0 auto;
   display: flex;
   align-items: center;
   justify-content: space-between;
   flex-wrap: wrap;
-  gap: 1rem;
+  gap: 1rem 1.5rem;
 }
-
-/* Footer logo text */
 .footer-logo {
   font-family: 'Playfair Display', serif;
   font-size: 1rem;
   color: var(--gold);
   font-weight: 700;
 }
-
-/* Secondary part of the footer logo in muted white */
-.footer-logo span {
-  color: rgba(255, 255, 255, 0.6);
-}
-
-/* Copyright notice */
-.footer-copy {
-  font-family: 'Barlow', sans-serif;
-  font-size: 0.78rem;
-  color: rgba(255, 255, 255, 0.35);
-}
-
-/* Horizontal list of footer nav links */
-.footer-links {
-  display: flex;
-  gap: 1.5rem;
-  list-style: none;
-}
-
+.footer-logo span { color: rgba(255, 255, 255, 0.6); font-weight: 400; }
+.footer-links { display: flex; gap: 1.5rem; list-style: none; flex-wrap: wrap; justify-content: center; }
 .footer-links a {
   font-family: 'Barlow', sans-serif;
   font-size: 0.78rem;
-  color: rgba(255, 255, 255, 0.45);
+  color: rgba(255, 255, 255, 0.5);
   text-decoration: none;
-  transition: color 0.2s;
+  transition: color 0.2s var(--ease);
 }
-
-.footer-links a:hover {
-  color: var(--gold);
+.footer-links a:hover { color: var(--gold); }
+.footer-copy {
+  font-family: 'Barlow', sans-serif;
+  font-size: 0.76rem;
+  color: rgba(255, 255, 255, 0.4);
+  width: 100%;
+  line-height: 1.6;
 }
 
 
 /* ==========================================================================
-   SECTION 15: ANIMATIONS
-   CSS keyframe animations for fade-up entrance effects used on the hero
-   section elements. Scroll-triggered animations are handled in main.js
-   using IntersectionObserver.
+   15. ANIMATIONS
    ========================================================================== */
-
-/* Fade up animation: elements start below and slightly transparent, rise into view */
 @keyframes fadeUp {
-  from {
-    opacity: 0;
-    transform: translateY(24px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
+.fade-up { animation: fadeUp 0.7s var(--ease) both; }
+.fade-up-delay-1 { animation-delay: 0.12s; }
+.fade-up-delay-2 { animation-delay: 0.24s; }
+.fade-up-delay-3 { animation-delay: 0.36s; }
 
-/* Base class: applies the animation */
-.fade-up {
-  animation: fadeUp 0.7s ease both;
-}
-
-/* Staggered delays so elements animate in sequence (eyebrow → title → text → buttons) */
-.fade-up-delay-1 { animation-delay: 0.15s; }
-.fade-up-delay-2 { animation-delay: 0.30s; }
-.fade-up-delay-3 { animation-delay: 0.45s; }
+/* JS adds this to reveal scroll-observed cards */
+.reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.6s var(--ease), transform 0.6s var(--ease); }
+.reveal.is-visible { opacity: 1; transform: translateY(0); }
 
 
 /* ==========================================================================
-   SECTION 16: RESPONSIVE DESIGN
-   Breakpoints that adapt the layout for tablets and mobile phones.
-   The site is designed desktop-first; these rules progressively simplify
-   the layout as the viewport narrows.
+   16. RESPONSIVE
    ========================================================================== */
 
-/* ── Tablet (max-width: 1024px) ── */
-@media (max-width: 1024px) {
+/* ── Collapse navigation to a toggle menu ── */
+@media (max-width: 1080px) {
+  .nav-toggle { display: block; }
 
-  /* Hero becomes single-column; stats card hidden on tablet */
-  .hero-inner {
-    grid-template-columns: 1fr;
+  .primary-nav {
+    display: block;
+    width: 100%;
+    position: fixed;
+    inset: var(--header-h) 0 auto 0;
+    background: var(--navy);
+    border-bottom: 1px solid rgba(201, 168, 76, 0.3);
+    box-shadow: 0 24px 40px rgba(0, 0, 0, 0.35);
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.32s var(--ease);
   }
-  .hero-card {
-    display: none;
-  }
+  .site-header.nav-open .primary-nav { max-height: calc(100vh - var(--header-h)); }
 
-  /* Services and projects drop to 2-column grids */
-  .services-grid {
-    grid-template-columns: 1fr 1fr;
+  .nav-links {
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    padding: 0.5rem var(--gutter) 1.5rem;
   }
-  .projects-grid {
-    grid-template-columns: 1fr 1fr;
+  .nav-links li { width: 100%; }
+  .nav-cta { display: block; }
+  .nav-links a {
+    display: block;
+    padding: 0.95rem 0.25rem;
+    font-size: 0.8rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.08);
   }
-
-  /* Featured project cards span both columns on tablet */
-  .project-featured {
-    grid-column: span 2;
-  }
-
-  /* Team drops to 2 columns */
-  .team-grid {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  /* About section stacks vertically */
-  .about-grid {
-    grid-template-columns: 1fr;
-  }
-
-  /* Targets banner stacks vertically */
-  .targets-inner {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-  }
-  .targets-label {
-    border-right: none;
-    padding-right: 0;
-  }
-  .target-item {
-    padding-left: 0;
+  .nav-cta {
+    margin: 0.9rem 0 0;
+    text-align: center;
+    padding: 0.9rem 1rem !important;
   }
 }
 
-/* ── Mobile (max-width: 768px) ── */
-@media (max-width: 768px) {
+/* ── Tablet ── */
+@media (max-width: 960px) {
+  .hero { min-height: auto; }
+  .hero-inner { grid-template-columns: 1fr; }
+  .hero-card { max-width: 460px; }
 
-  /* Hide the nav links on mobile (hamburger menu would go here in a future update) */
-  .nav-links {
-    display: none;
-  }
+  .services-grid { grid-template-columns: repeat(2, 1fr); }
+  .projects-grid { grid-template-columns: repeat(2, 1fr); }
+  .team-grid     { grid-template-columns: repeat(2, 1fr); }
 
-  /* All multi-column grids collapse to single column on mobile */
+  .about-grid { grid-template-columns: 1fr; }
+  .presence-card { position: static; }
+
+  .justice-grid,
+  .legal-grid,
+  .contact-grid { grid-template-columns: 1fr; }
+
+  .project-featured { grid-template-columns: 1fr; align-items: start; }
+}
+
+/* ── Large phone ── */
+@media (max-width: 720px) {
   .services-grid,
   .projects-grid,
-  .team-grid,
-  .legal-grid,
-  .justice-grid,
-  .contact-grid {
-    grid-template-columns: 1fr;
+  .team-grid { grid-template-columns: 1fr; }
+
+  .legal-practice-areas { grid-template-columns: 1fr 1fr; }
+
+  .trust-label {
+    border-right: none;
+    padding-right: 0;
+    border-bottom: 1px solid rgba(201, 168, 76, 0.3);
+    padding-bottom: 0.75rem;
+    width: 100%;
   }
 
-  /* Featured project on mobile: single column, no grid span */
-  .project-featured {
-    grid-column: span 1;
-    grid-template-columns: 1fr;
-  }
+  .footer-inner { flex-direction: column; text-align: center; }
+}
 
-  /* Form row stacks to single column on mobile */
-  .form-row {
-    grid-template-columns: 1fr;
-  }
+/* ── Small phone ── */
+@media (max-width: 520px) {
+  :root { --header-h: 60px; }
 
-  /* Practice area chips stack on mobile */
-  .legal-practice-areas {
-    grid-template-columns: 1fr;
-  }
+  .hero-buttons { flex-direction: column; align-items: stretch; }
+  .btn-primary, .btn-outline { width: 100%; }
 
-  /* Reduce section padding on mobile for more content space */
-  section {
-    padding: 60px 1.2rem;
+  .hero-card { padding: 1.5rem; }
+  .service-card,
+  .contact-card,
+  .contact-form-wrap,
+  .justice-def-card { padding: 1.5rem; }
+
+  .about-highlight { padding: 1.5rem 1.6rem; }
+  .form-row { grid-template-columns: 1fr; }
+  .legal-practice-areas { grid-template-columns: 1fr; }
+  .nav-logo span { display: none; }
+}
+
+
+/* ==========================================================================
+   17. REDUCED MOTION & PRINT
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
   }
+  .reveal { opacity: 1 !important; transform: none !important; }
+  .hero-video { display: none; }
+}
+
+@media print {
+  .site-header, .hero-video-wrap, .nav-toggle, .contact-form-wrap { display: none !important; }
+  body { color: #000; background: #fff; }
+  section { padding: 1.5rem 0; }
+  .service-card, .team-card, .project-item { break-inside: avoid; }
 }
